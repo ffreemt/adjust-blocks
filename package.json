@@ -1,0 +1,21 @@
+{
+    "dependencies": {
+        "npm-run-all": "^4.1.5"
+    },
+    "scripts": {
+        "start": "pyright && pytest && yarn style",
+        "test": "nodemon -w tests -w adjust_blocks -x pytest tests",
+        "pyright": "nodemon -w adjust_blocks -w .venv -e .py -x pyright adjust_blocks tests",
+        "pytest": "nodemon -w tests -w adjust_blocks -e .py -x pytest tests adjust_blocks",
+        "style": "nodemon -w adjust_blocks -w tests -x \"black tests adjust_blocks && python -m flake8\"",
+        "docstyle": "nodemon -w adjust_blocks -w tests -x pydocstyle --convention=google tests adjust_blocks",
+        "pylint": "nodemon -w adjust_blocks -e .py -x pylint adjust_blocks",
+        "test:adjust_blocks": "nodemon -w tests -e .py -x pytest -k adjust_blocks tests",
+        "publish": "poetry build && poetry publish",
+        "black": "black tests adjust_blocks",
+        "flake8": "flake8 tests adjust_blocks",
+        "pflake8": "pflake8 tests adjust_blocks",
+        "pep257": "pep257 tests adjust_blocks",
+        "final": "run-s docstyle black flake8 pytest"
+    }
+}
